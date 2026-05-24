@@ -221,9 +221,9 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new RuntimeException("Dados obrigatorios nao fornecidos");
         }
         Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new RuntimeException("Usuario nao encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario nao encontrado"));
         if (!passwordEncoder.matches(senhaAtual, usuario.getSenha())) {
-            throw new RuntimeException("Senha atual incorreta");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Senha atual incorreta");
         }
         usuario.setSenha(passwordEncoder.encode(novaSenha));
         usuarioRepository.save(usuario);
