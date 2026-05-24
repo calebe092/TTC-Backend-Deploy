@@ -99,6 +99,10 @@ public class UsuarioServiceImpl implements UsuarioService {
         if (dto.getFoto() != null) usuario.setFoto(dto.getFoto());
         if (dto.getBloqueioPublicacao() != null) usuario.setBloqueioPublicacao(dto.getBloqueioPublicacao());
         if (dto.getBloqueioChat() != null) usuario.setBloqueioChat(dto.getBloqueioChat());
+        if (dto.getWhatsapp() != null && usuario.getPessoa() != null) {
+            usuario.getPessoa().setWhatsapp(dto.getWhatsapp());
+            pessoaRepository.save(usuario.getPessoa());
+        }
 
         Usuario salvo = usuarioRepository.save(usuario);
         return UsuarioMapper.toUsuarioResponseDTO(salvo, isAdmin(salvo.getId()));
