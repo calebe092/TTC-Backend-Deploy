@@ -1,18 +1,12 @@
 package com.projetoEletro.api.mapper;
 
-
-import com.projetoEletro.api.dto.post.AnuncioPostDTO;
-import com.projetoEletro.api.dto.post.UsuarioPostDTO;
-import com.projetoEletro.api.dto.response.AnuncioResponseDTO;
-import com.projetoEletro.api.dto.response.UsuarioResponseDTO;
-import com.projetoEletro.domain.model.Anuncio;
-import com.projetoEletro.domain.model.Categoria;
-import com.projetoEletro.domain.model.Pessoa;
-import com.projetoEletro.domain.model.Usuario;
-
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.projetoEletro.api.dto.post.UsuarioPostDTO;
+import com.projetoEletro.api.dto.response.UsuarioResponseDTO;
+import com.projetoEletro.domain.model.Pessoa;
+import com.projetoEletro.domain.model.Usuario;
 
 public class UsuarioMapper {
 
@@ -26,27 +20,31 @@ public class UsuarioMapper {
         usuario1.setFoto(dto.getFoto());
         usuario1.setResetToken(dto.getResetToken());
         usuario1.setResetTokenExpires(dto.getResetTokenExpires());
-        usuario1.setBloqueioPublicacao(usuario1.getBloqueioPublicacao());
-        usuario1.setBloqueioChat(usuario1.getBloqueioChat());
+        usuario1.setBloqueioPublicacao(dto.getBloqueioPublicacao() != null ? dto.getBloqueioPublicacao() : false);
+        usuario1.setBloqueioChat(dto.getBloqueioChat() != null ? dto.getBloqueioChat() : false);
         usuario1.setPessoa(pessoa);
         return usuario1;
     }
 
 
-    public static UsuarioResponseDTO toUsuarioResponseDTO(Usuario usuario) {
+    public static UsuarioResponseDTO toUsuarioResponseDTO(Usuario usuario, Boolean isAdmin) {
         if (usuario == null) {
             return null;
         }
         return UsuarioResponseDTO.builder()
                 .id(usuario.getId())
                 .email(usuario.getEmail())
-                .senha(usuario.getSenha())
                 .foto(usuario.getFoto())
                 .resetToken(usuario.getResetToken())
                 .resetTokenExpires(usuario.getResetTokenExpires())
                 .bloqueioPublicacao(usuario.getBloqueioPublicacao())
                 .bloqueioChat(usuario.getBloqueioChat())
                 .pessoaId(usuario.getPessoa() != null ? usuario.getPessoa().getId() : null)
+                .nome(usuario.getPessoa() != null ? usuario.getPessoa().getNome() : null)
+                .cpf(usuario.getPessoa() != null ? usuario.getPessoa().getCpf() : null)
+                .dataNascimento(usuario.getPessoa() != null ? usuario.getPessoa().getDataNascimento() : null)
+                .whatsapp(usuario.getPessoa() != null ? usuario.getPessoa().getWhatsapp() : null)
+                .isAdmin(isAdmin != null ? isAdmin : false)
                 .build();
     }
 
@@ -55,7 +53,7 @@ public class UsuarioMapper {
             return null;
         }
         return usuarios.stream()
-                .map(UsuarioMapper::toUsuarioResponseDTO)
+                .map(u -> UsuarioMapper.toUsuarioResponseDTO(u, false))
                 .collect(Collectors.toList());
     }
 

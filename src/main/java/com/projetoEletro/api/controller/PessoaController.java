@@ -8,6 +8,7 @@ import com.projetoEletro.domain.service.PessoaService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class PessoaController {
     }
 
     @PostMapping
-    @ResponseStatus
+    @ResponseStatus(HttpStatus.CREATED)
     public PessoaResponseDTO adicionarPessoa(@Valid @RequestBody PessoaPostDTO pessoaPostDTO) {
         return pessoaService.salvarPessoa(pessoaPostDTO);
     }

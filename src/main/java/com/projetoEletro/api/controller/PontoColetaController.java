@@ -6,8 +6,8 @@ import com.projetoEletro.api.dto.response.PontoColetaResponseDTO;
 import com.projetoEletro.domain.service.PontoColetaService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.Optional;
 public class PontoColetaController {
 
     @Autowired
-    private final PontoColetaService pontocoletaService;
+    private PontoColetaService pontocoletaService;
 
     @GetMapping
     public List<PontoColetaResponseDTO> listar(){
@@ -27,7 +27,7 @@ public class PontoColetaController {
     }
 
     @PostMapping
-    @ResponseStatus
+    @ResponseStatus(HttpStatus.CREATED)
     public PontoColetaResponseDTO adicionarPontoColeta(@Valid @RequestBody PontoColetaPostDTO pontoColetaPostDTO){
         return pontocoletaService.salvarPontocoleta(pontoColetaPostDTO);
     }

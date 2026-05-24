@@ -1,7 +1,5 @@
 package com.projetoEletro.api.dto.post;
 
-import com.projetoEletro.domain.model.Pessoa;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

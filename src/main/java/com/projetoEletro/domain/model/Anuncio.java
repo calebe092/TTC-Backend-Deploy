@@ -1,5 +1,7 @@
 package com.projetoEletro.domain.model;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,7 +30,7 @@ public class Anuncio {
     @Column(name = "titulo", nullable = false)
     private String titulo;
 
-    @Column(name = "descricao")
+    @Column(name = "descricao", columnDefinition = "TEXT")
     private String descricao;
 
     @Column(name = "tipo")
@@ -41,11 +42,20 @@ public class Anuncio {
     @Column(name = "marca")
     private String marca;
 
-    @Column(name = "foto")
+    @Column(name = "foto", columnDefinition = "TEXT")
     private String foto;
 
     @Column(name = "bairro")
     private String bairro;
+
+    @Column(name = "nome")
+    private String nome;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "whatsapp")
+    private String whatsapp;
 
     @Column(name = "status")
     private String status;

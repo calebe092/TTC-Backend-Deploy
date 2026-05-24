@@ -1,11 +1,9 @@
 package com.projetoEletro.domain.service;
 
 import com.projetoEletro.api.dto.post.PontoColetaPostDTO;
-import com.projetoEletro.api.dto.put.ConteudoEducativoPutDTO;
 import com.projetoEletro.api.dto.put.PontoColetaPutDTO;
 import com.projetoEletro.api.dto.response.PontoColetaResponseDTO;
 import com.projetoEletro.api.mapper.PontoColetaMapper;
-import com.projetoEletro.domain.model.ConteudoEducativo;
 import com.projetoEletro.domain.model.PontoColeta;
 import com.projetoEletro.domain.repository.PontoColetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PontoColeServicetaImpl  implements PontoColetaService {
+public class PontoColetaServiceImpl  implements PontoColetaService {
 
     @Autowired
     private PontoColetaRepository pontoColetaRepository;

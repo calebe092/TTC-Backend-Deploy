@@ -27,4 +27,6 @@ public class MensagemPostDTO {
 
     @NotBlank
     private String destinatarioNome;
+
+    private Long anuncioId;
 }

@@ -17,7 +17,7 @@ import java.util.Optional;
 @RequestMapping("/mensagens")
 public class MensagemController {
 
-    private final MensagemService mensagemService;
+    private MensagemService mensagemService;
 
     @GetMapping
     public List<MensagemResponseDTO> listarMensagens() {
@@ -43,5 +43,23 @@ public class MensagemController {
     @DeleteMapping("/{mensagemId}")
     public void deletar(@PathVariable Long mensagemId) {
         mensagemService.deletar(mensagemId);
+    }
+
+    @GetMapping("/anuncio/{anuncioId}")
+    public List<MensagemResponseDTO> listarPorAnuncio(@PathVariable Long anuncioId) {
+        return mensagemService.listarPorAnuncio(anuncioId);
+    }
+
+    @GetMapping("/email/{email}")
+    public List<MensagemResponseDTO> listarPorEmail(@PathVariable String email) {
+        return mensagemService.listarPorEmail(email);
+    }
+
+    @GetMapping("/conversa")
+    public List<MensagemResponseDTO> listarConversa(
+            @RequestParam String emailA,
+            @RequestParam String emailB,
+            @RequestParam(required = false) Long anuncioId) {
+        return mensagemService.listarConversa(emailA, emailB, anuncioId);
     }
 }

@@ -22,8 +22,15 @@ public class ConteudoEducativoService {
     }
 
     public ConteudoEducativoResponseDTO salvarConteudoEducativo(ConteudoEducativoPostDTO conteudoEducativoPostDTO){
-        return ConteudoEducativoMapper.toConteudoEducativoResponseDTO(conteudoEducativoRepository.save(ConteudoEducativoMapper
-                .toConteudoEducativoPostDTO(conteudoEducativoPostDTO)));
+        ConteudoEducativo entidade = ConteudoEducativoMapper.toConteudoEducativoPostDTO(conteudoEducativoPostDTO);
+        if (entidade.getAtivo() == null) entidade.setAtivo(true);
+        if (entidade.getDataCriacao() == null) entidade.setDataCriacao(java.time.LocalDateTime.now());
+        return ConteudoEducativoMapper.toConteudoEducativoResponseDTO(conteudoEducativoRepository.save(entidade));
+    }
+
+    public List<ConteudoEducativoResponseDTO> listarAtivos(){
+        return ConteudoEducativoMapper.listConteudoEducativoResponseDTO(
+                conteudoEducativoRepository.findByAtivoTrue());
     }
 
     public ConteudoEducativoResponseDTO buscarConteudoEducativoId(Long conteudoEducativoId){
@@ -40,7 +47,6 @@ public class ConteudoEducativoService {
 
     public ConteudoEducativoResponseDTO atualizarConteudoEducativo(Long conteudoEducativoId, ConteudoEducativoPutDTO conteudoEducativoPutDTO){
         ConteudoEducativo conteudoEducativoDB = buscarConteudoEducativoPorId(conteudoEducativoId);
-        conteudoEducativoDB.setId(conteudoEducativoPutDTO.getId());
         conteudoEducativoDB.setTitulo(conteudoEducativoPutDTO.getTitulo());
         conteudoEducativoDB.setCategoria(conteudoEducativoPutDTO.getCategoria());
         conteudoEducativoDB.setTexto(conteudoEducativoPutDTO.getTexto());

@@ -21,6 +21,9 @@ public class AnuncioResponseDTO {
     private String marca;
     private String foto;
     private String bairro;
+    private String nome;
+    private String email;
+    private String whatsapp;
     private String status;
     private LocalDateTime dataPublicacao;
     private Long usuarioId;

@@ -21,6 +21,9 @@ public class AnuncioPutDTO {
     private String marca;
     private String foto;
     private String bairro;
+    private String nome;
+    private String email;
+    private String whatsapp;
     private String status;
     private Long categoriaId;
 }

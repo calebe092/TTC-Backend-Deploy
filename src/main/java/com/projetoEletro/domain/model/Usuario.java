@@ -31,7 +31,7 @@ public class Usuario {
     @Column(name = "senha", nullable = false)
     private String senha;
 
-    @Column(name = "foto")
+    @Column(name = "foto", columnDefinition = "TEXT")
     private String foto;
 
     @Column(name = "reset_token")

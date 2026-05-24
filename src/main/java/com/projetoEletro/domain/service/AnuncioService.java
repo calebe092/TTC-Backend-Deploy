@@ -14,4 +14,8 @@ public interface AnuncioService {
     List<AnuncioResponseDTO> buscarAnunciosPorCategoria(Long categoriaId);
     AnuncioResponseDTO atualizarAnuncio(Long id, AnuncioPutDTO anuncioPutDTO);
     void deletarAnuncio(Long id);
+    List<AnuncioResponseDTO> listarPendentes();
+    AnuncioResponseDTO aprovar(Long id);
+    AnuncioResponseDTO rejeitar(Long id);
+    List<AnuncioResponseDTO> listarAprovados();
 }

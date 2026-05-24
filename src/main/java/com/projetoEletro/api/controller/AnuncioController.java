@@ -56,4 +56,24 @@ public class AnuncioController {
     public void deletar(@PathVariable Long id) {
         anuncioService.deletarAnuncio(id);
     }
+
+    @GetMapping("/pendentes")
+    public List<AnuncioResponseDTO> listarPendentes() {
+        return anuncioService.listarPendentes();
+    }
+
+    @PatchMapping("/{id}/aprovar")
+    public AnuncioResponseDTO aprovar(@PathVariable Long id) {
+        return anuncioService.aprovar(id);
+    }
+
+    @PatchMapping("/{id}/rejeitar")
+    public AnuncioResponseDTO rejeitar(@PathVariable Long id) {
+        return anuncioService.rejeitar(id);
+    }
+
+    @GetMapping("/aprovados")
+    public List<AnuncioResponseDTO> listarAprovados() {
+        return anuncioService.listarAprovados();
+    }
 }

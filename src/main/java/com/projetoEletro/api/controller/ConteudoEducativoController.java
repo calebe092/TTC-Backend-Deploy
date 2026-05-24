@@ -7,6 +7,7 @@ import com.projetoEletro.domain.service.ConteudoEducativoService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,8 +26,13 @@ public class ConteudoEducativoController {
         return conteudoEducativoService.listarConteudoEducativo();
     }
 
+    @GetMapping("/ativos")
+    public List<ConteudoEducativoResponseDTO> listarAtivos(){
+        return conteudoEducativoService.listarAtivos();
+    }
+
     @PostMapping
-    @ResponseStatus
+    @ResponseStatus(HttpStatus.CREATED)
     public ConteudoEducativoResponseDTO adicionarConteudoEducativo(@Valid @RequestBody ConteudoEducativoPostDTO conteudoEducativoPostDTO){
         return conteudoEducativoService.salvarConteudoEducativo(conteudoEducativoPostDTO);
     }

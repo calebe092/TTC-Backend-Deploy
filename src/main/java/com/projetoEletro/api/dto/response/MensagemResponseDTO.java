@@ -17,4 +17,5 @@ public class MensagemResponseDTO {
     private String destinatarioEmail;
     private String destinatarioNome;
     private LocalDateTime dataCriacao;
+    private Long anuncioId;
 }

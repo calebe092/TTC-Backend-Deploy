@@ -25,7 +25,10 @@ public class AnuncioMapper {
         anuncio.setMarca(dto.getMarca());
         anuncio.setFoto(dto.getFoto());
         anuncio.setBairro(dto.getBairro());
-        anuncio.setStatus(dto.getStatus() != null ? dto.getStatus() : "ATIVO");
+        anuncio.setNome(dto.getNome());
+        anuncio.setEmail(dto.getEmail());
+        anuncio.setWhatsapp(dto.getWhatsapp());
+        anuncio.setStatus(dto.getStatus() != null ? dto.getStatus() : "pendente");
         anuncio.setDataPublicacao(LocalDateTime.now());
         anuncio.setUsuario(usuario);
         anuncio.setCategoria(categoria);
@@ -45,6 +48,9 @@ public class AnuncioMapper {
                 .marca(anuncio.getMarca())
                 .foto(anuncio.getFoto())
                 .bairro(anuncio.getBairro())
+                .nome(anuncio.getNome())
+                .email(anuncio.getEmail())
+                .whatsapp(anuncio.getWhatsapp())
                 .status(anuncio.getStatus())
                 .dataPublicacao(anuncio.getDataPublicacao())
                 .usuarioId(anuncio.getUsuario() != null ? anuncio.getUsuario().getId() : null)
@@ -72,6 +78,9 @@ public class AnuncioMapper {
         anuncio.setMarca(dto.getMarca());
         anuncio.setFoto(dto.getFoto());
         anuncio.setBairro(dto.getBairro());
+        anuncio.setNome(dto.getNome());
+        anuncio.setEmail(dto.getEmail());
+        anuncio.setWhatsapp(dto.getWhatsapp());
         anuncio.setStatus(dto.getStatus());
         if (categoria != null) {
             anuncio.setCategoria(categoria);

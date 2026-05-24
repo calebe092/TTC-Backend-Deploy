@@ -17,4 +17,7 @@ public interface MensagemService {
     MensagemResponseDTO atualizar(Long mensagemId, MensagemPutDTO mensagemPutDTO);
 
     void deletar(Long mensagemId);
+    List<MensagemResponseDTO> listarPorAnuncio(Long anuncioId);
+    List<MensagemResponseDTO> listarPorEmail(String email);
+    List<MensagemResponseDTO> listarConversa(String emailA, String emailB, Long anuncioId);
 }

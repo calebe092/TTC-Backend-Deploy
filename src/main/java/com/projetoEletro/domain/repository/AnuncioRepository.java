@@ -10,4 +10,6 @@ import java.util.List;
 public interface AnuncioRepository extends JpaRepository<Anuncio, Long> {
     List<Anuncio> findByUsuarioId(Long usuarioId);
     List<Anuncio> findByCategoriaId(Long categoriaId);
+    List<Anuncio> findByStatus(String status);
+    void deleteByUsuarioId(Long usuarioId);
 }
