@@ -10,6 +10,7 @@ import com.projetoEletro.domain.model.Mensagem;
 import com.projetoEletro.domain.repository.AnuncioRepository;
 import com.projetoEletro.domain.repository.MensagemRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ public class MensagemServiceImpl implements MensagemService {
 
     private final MensagemRepository mensagemRepository;
     private final AnuncioRepository anuncioRepository;
+    private final SimpMessagingTemplate messagingTemplate;
 
     @Override
     public List<MensagemResponseDTO> listar() {
@@ -48,7 +50,11 @@ public class MensagemServiceImpl implements MensagemService {
         }
         mensagem.setDataCriacao(LocalDateTime.now());
         Mensagem salvo = mensagemRepository.save(mensagem);
-        return MensagemMapper.toResponseDTO(salvo);
+        MensagemResponseDTO dto = MensagemMapper.toResponseDTO(salvo);
+        if (salvo.getAnuncio() != null) {
+            messagingTemplate.convertAndSend("/topic/mensagens/" + salvo.getAnuncio().getId(), dto);
+        }
+        return dto;
     }
 
     @Override
