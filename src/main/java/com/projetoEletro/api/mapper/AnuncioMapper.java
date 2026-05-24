@@ -1,15 +1,15 @@
 package com.projetoEletro.api.mapper;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.projetoEletro.api.dto.post.AnuncioPostDTO;
 import com.projetoEletro.api.dto.put.AnuncioPutDTO;
 import com.projetoEletro.api.dto.response.AnuncioResponseDTO;
 import com.projetoEletro.domain.model.Anuncio;
 import com.projetoEletro.domain.model.Categoria;
 import com.projetoEletro.domain.model.Usuario;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class AnuncioMapper {
 
@@ -55,6 +55,7 @@ public class AnuncioMapper {
                 .dataPublicacao(anuncio.getDataPublicacao())
                 .usuarioId(anuncio.getUsuario() != null ? anuncio.getUsuario().getId() : null)
                 .categoriaId(anuncio.getCategoria() != null ? anuncio.getCategoria().getId() : null)
+                .categoria(anuncio.getCategoria() != null ? anuncio.getCategoria().getSlug() : null)
                 .build();
     }
 
