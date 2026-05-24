@@ -1,5 +1,15 @@
 package com.projetoEletro.domain.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
+
 import com.projetoEletro.api.dto.post.RegistroDTO;
 import com.projetoEletro.api.dto.post.UsuarioPostDTO;
 import com.projetoEletro.api.dto.put.UsuarioPutDTO;
@@ -12,13 +22,6 @@ import com.projetoEletro.domain.repository.AnuncioRepository;
 import com.projetoEletro.domain.repository.PessoaRepository;
 import com.projetoEletro.domain.repository.UsuarioGrupoRepository;
 import com.projetoEletro.domain.repository.UsuarioRepository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -118,7 +121,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new RuntimeException("Email e obrigatorio");
         }
         Usuario usuario = usuarioRepository.findByEmailIgnoreCase(email.trim())
-                .orElseThrow(() -> new RuntimeException("Usuario com email " + email + " nao encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario nao encontrado"));
         return UsuarioMapper.toUsuarioResponseDTO(usuario, isAdmin(usuario.getId()));
     }
 
