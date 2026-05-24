@@ -26,4 +26,5 @@ public class AnuncioPutDTO {
     private String whatsapp;
     private String status;
     private Long categoriaId;
+    private String categoriaSlug;
 }

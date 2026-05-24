@@ -1,5 +1,7 @@
 package com.projetoEletro.api.mapper;
 
+import java.time.LocalDateTime;
+
 import com.projetoEletro.api.dto.post.DenunciaPostDTO;
 import com.projetoEletro.api.dto.put.DenunciaPutDTO;
 import com.projetoEletro.api.dto.response.DenunciaResponseDTO;
@@ -17,7 +19,8 @@ public class DenunciaMapper {
                 .motivo(dto.getMotivo())
                 .descricao(dto.getDescricao())
                 .denuncianteEmail(dto.getDenuncianteEmail())
-                .status(dto.getStatus())
+                .status(dto.getStatus() != null ? dto.getStatus() : "pendente")
+                .dataCriacao(LocalDateTime.now())
                 .usuario(usuario)
                 .anuncio(anuncio)
                 .build();
@@ -35,6 +38,7 @@ public class DenunciaMapper {
                 .status(denuncia.getStatus())
                 .usuarioId(denuncia.getUsuario() != null ? denuncia.getUsuario().getId() : null)
                 .anuncioId(denuncia.getAnuncio() != null ? denuncia.getAnuncio().getId() : null)
+                .dataCriacao(denuncia.getDataCriacao())
                 .build();
     }
 

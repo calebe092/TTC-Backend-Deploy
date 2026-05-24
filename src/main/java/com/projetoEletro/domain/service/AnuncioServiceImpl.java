@@ -110,6 +110,8 @@ public class AnuncioServiceImpl implements AnuncioService {
         if (anuncioPutDTO.getCategoriaId() != null) {
             categoria = categoriaRepository.findById(anuncioPutDTO.getCategoriaId())
                     .orElseThrow(() -> new RuntimeException("Categoria com ID " + anuncioPutDTO.getCategoriaId() + " não encontrada"));
+        } else if (anuncioPutDTO.getCategoriaSlug() != null) {
+            categoria = categoriaRepository.findBySlug(anuncioPutDTO.getCategoriaSlug());
         }
 
         anuncio = AnuncioMapper.toAnuncioFromPutDTO(anuncioPutDTO, anuncio, categoria);
