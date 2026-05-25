@@ -1,8 +1,6 @@
 [build]
-builder = "nixpacks"
-buildCommand = "./mvnw clean package -DskipTests"
+builder = "dockerfile"
 
 [deploy]
-startCommand = "java -jar target/projetoEletro-0.0.1-SNAPSHOT.jar"
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
