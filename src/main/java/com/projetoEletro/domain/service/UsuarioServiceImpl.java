@@ -216,11 +216,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public void alterarSenha(Long usuarioId, String senhaAtual, String novaSenha) {
-        if (usuarioId == null || senhaAtual == null || novaSenha == null) {
+    public void alterarSenha(String email, String senhaAtual, String novaSenha) {
+        if (email == null || email.isBlank() || senhaAtual == null || novaSenha == null) {
             throw new RuntimeException("Dados obrigatorios nao fornecidos");
         }
-        Usuario usuario = usuarioRepository.findById(usuarioId)
+        Usuario usuario = usuarioRepository.findByEmailIgnoreCase(email.trim())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario nao encontrado"));
         if (!passwordEncoder.matches(senhaAtual, usuario.getSenha())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Senha atual incorreta");

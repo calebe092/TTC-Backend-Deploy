@@ -16,7 +16,7 @@ public interface UsuarioService {
     void deletarUsuario(Long id);
     UsuarioResponseDTO buscarPorEmail(String email);
     UsuarioResponseDTO autenticar(String emailOuCpf, String senha);
-    void alterarSenha(Long usuarioId, String senhaAtual, String novaSenha);
+    void alterarSenha(String email, String senhaAtual, String novaSenha);
     UsuarioResponseDTO registrar(RegistroDTO dto);
     List<UsuarioResponseDTO> listarBloqueados();
     UsuarioResponseDTO aplicarPunicao(Long id, Boolean bloqueioPublicacao, Boolean bloqueioChat);

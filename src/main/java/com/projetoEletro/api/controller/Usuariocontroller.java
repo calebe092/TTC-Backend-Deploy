@@ -59,10 +59,10 @@ public class Usuariocontroller {
         return usuarioService.autenticar(credenciais.get("emailOuCpf"), credenciais.get("senha"));
     }
 
-    @PatchMapping("/{id}/senha")
+    @PatchMapping("/senha")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void alterarSenha(@PathVariable Long id, @RequestBody Map<String, String> dados) {
-        usuarioService.alterarSenha(id, dados.get("senhaAtual"), dados.get("senhaNova"));
+    public void alterarSenha(@RequestBody Map<String, String> dados) {
+        usuarioService.alterarSenha(dados.get("email"), dados.get("senhaAtual"), dados.get("senhaNova"));
     }
 
     @PutMapping("/{id}")
