@@ -37,6 +37,12 @@ public class ConteudoEducativo {
     @Column(name = "link_video")
     private String linkVideo;
 
+    @Column(name = "link_original")
+    private String linkOriginal;
+
+    @Column(name = "imagem")
+    private String imagem;
+
     @Column(name = "ativo")
     private Boolean ativo;
 

@@ -1,15 +1,16 @@
 package com.projetoEletro.domain.service;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.projetoEletro.api.dto.post.ConteudoEducativoPostDTO;
 import com.projetoEletro.api.dto.put.ConteudoEducativoPutDTO;
 import com.projetoEletro.api.dto.response.ConteudoEducativoResponseDTO;
 import com.projetoEletro.api.mapper.ConteudoEducativoMapper;
 import com.projetoEletro.domain.model.ConteudoEducativo;
 import com.projetoEletro.domain.repository.ConteudoEducativoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ConteudoEducativoService {
@@ -51,6 +52,8 @@ public class ConteudoEducativoService {
         conteudoEducativoDB.setCategoria(conteudoEducativoPutDTO.getCategoria());
         conteudoEducativoDB.setTexto(conteudoEducativoPutDTO.getTexto());
         conteudoEducativoDB.setLinkVideo(conteudoEducativoPutDTO.getLinkVideo());
+        conteudoEducativoDB.setLinkOriginal(conteudoEducativoPutDTO.getLinkOriginal());
+        conteudoEducativoDB.setImagem(conteudoEducativoPutDTO.getImagem());
         conteudoEducativoDB.setAtivo(conteudoEducativoPutDTO.getAtivo());
         conteudoEducativoDB.setDataCriacao(conteudoEducativoPutDTO.getDataCriacao());
 

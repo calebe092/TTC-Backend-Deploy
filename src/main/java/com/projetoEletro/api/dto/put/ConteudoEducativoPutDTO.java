@@ -1,11 +1,11 @@
 package com.projetoEletro.api.dto.put;
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,6 +18,8 @@ public class ConteudoEducativoPutDTO {
     private String categoria;
     private String texto;
     private String linkVideo;
+    private String linkOriginal;
+    private String imagem;
     private Boolean ativo;
     private LocalDateTime dataCriacao;
 }

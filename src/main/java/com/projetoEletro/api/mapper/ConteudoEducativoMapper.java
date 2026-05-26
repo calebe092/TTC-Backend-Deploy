@@ -1,11 +1,11 @@
 package com.projetoEletro.api.mapper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.projetoEletro.api.dto.post.ConteudoEducativoPostDTO;
 import com.projetoEletro.api.dto.response.ConteudoEducativoResponseDTO;
 import com.projetoEletro.domain.model.ConteudoEducativo;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ConteudoEducativoMapper {
 
@@ -17,6 +17,8 @@ public class ConteudoEducativoMapper {
                     .categoria(conteudoEducativo.getCategoria())
                     .texto(conteudoEducativo.getTexto())
                     .linkVideo(conteudoEducativo.getLinkVideo())
+                    .linkOriginal(conteudoEducativo.getLinkOriginal())
+                    .imagem(conteudoEducativo.getImagem())
                     .ativo(conteudoEducativo.getAtivo())
                     .dataCriacao(conteudoEducativo.getDataCriacao())
                     .build());
@@ -30,6 +32,8 @@ public class ConteudoEducativoMapper {
                 .categoria(conteudoEducativoPostDTO.getCategoria())
                 .texto(conteudoEducativoPostDTO.getTexto())
                 .linkVideo(conteudoEducativoPostDTO.getLinkVideo())
+                .linkOriginal(conteudoEducativoPostDTO.getLinkOriginal())
+                .imagem(conteudoEducativoPostDTO.getImagem())
                 .ativo(conteudoEducativoPostDTO.getAtivo())
                 .dataCriacao(conteudoEducativoPostDTO.getDataCriacao())
                 .build();
@@ -42,6 +46,8 @@ public class ConteudoEducativoMapper {
                 .categoria(conteudoEducativo.getCategoria())
                 .texto(conteudoEducativo.getTexto())
                 .linkVideo(conteudoEducativo.getLinkVideo())
+                .linkOriginal(conteudoEducativo.getLinkOriginal())
+                .imagem(conteudoEducativo.getImagem())
                 .ativo(conteudoEducativo.getAtivo())
                 .dataCriacao(conteudoEducativo.getDataCriacao())
                 .build();
@@ -54,6 +60,8 @@ public class ConteudoEducativoMapper {
                 .categoria(conteudoEducativo.getCategoria())
                 .texto(conteudoEducativo.getTexto())
                 .linkVideo(conteudoEducativo.getLinkVideo())
+                .linkOriginal(conteudoEducativo.getLinkOriginal())
+                .imagem(conteudoEducativo.getImagem())
                 .ativo(conteudoEducativo.getAtivo())
                 .dataCriacao(conteudoEducativo.getDataCriacao())
                 .build();
