@@ -157,12 +157,13 @@ public class UsuarioServiceImpl implements UsuarioService {
         if (dto == null) {
             throw new RuntimeException("Dados de registro nao podem ser nulos");
         }
-        if (pessoaRepository.existsByCpf(dto.getCpf())) {
+        String cpfLimpo = dto.getCpf() != null && !dto.getCpf().isBlank() ? dto.getCpf().trim() : null;
+        if (cpfLimpo != null && pessoaRepository.existsByCpf(cpfLimpo)) {
             throw new RuntimeException("CPF ja cadastrado");
         }
         Pessoa pessoa = new Pessoa();
         pessoa.setNome(dto.getNome());
-        pessoa.setCpf(dto.getCpf());
+        pessoa.setCpf(cpfLimpo);
         pessoa.setDataNascimento(dto.getDataNascimento());
         pessoa.setWhatsapp(dto.getWhatsapp());
         Pessoa pessoaSalva = pessoaRepository.save(pessoa);
